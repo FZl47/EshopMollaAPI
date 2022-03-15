@@ -262,15 +262,18 @@ def comment_post(request):
     keyUser = data.get('keyUser') or None
     replied = data.get('replied') or False
     replied_comment = data.get('replied_comment') or 0
+
+
+
     if ValidationText(name, 2, 51) and ValidationEmail(email, 2, 101) and ValidationText(message, 2,
-                                                                                         1001) and keyUser and postID:
+                                                                                     1001) and keyUser and postID:
         post = Post.objects.filter(id=postID).first()
         if post != None:
             if replied == 'True' or replied == True:
                 replied_comment = Comment.objects.filter(id=replied_comment).first()
                 if replied_comment != None:
                     Comment.objects.create(name=name, email=email, message=message, post_id=post.id, key=keyUser,
-                                           replied=True, replied_comment_id=replied_comment.id)
+                                         replied=True, replied_comment_id=replied_comment.id)
                     response['status_text'] = 'OK'
                     response['status_code'] = 200
                 else:

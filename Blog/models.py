@@ -183,7 +183,7 @@ class Comment(models.Model):
     message = models.TextField()
     is_checked = models.BooleanField(default=False)
     dateTimeSubmit = models.DateTimeField(auto_now=True)
-    imageProfile = models.CharField(max_length=70,default=RandomSrcImage)
+    imageProfile = models.CharField(max_length=300,default=RandomSrcImage)
     replied = models.BooleanField(default=False)
     replied_comment = models.ForeignKey('Blog.Comment',on_delete=models.SET_NULL,null=True,blank=True)
 
